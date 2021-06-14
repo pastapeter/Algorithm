@@ -48,7 +48,7 @@ print(BFS())
 //DFS
 func DFS(_ root: Tree?){
     if let root = root {
-        print(root.data)
+        print(root.data, terminator: " ")
     } else { return }
     DFS(root?.left)
     DFS(root?.right)
@@ -72,7 +72,33 @@ let graph: [String: [String]] = [
     "F" : ["C"],
 ]
 
+let matrix: [[Int]] = [
+        [0, 1, 1, 0, 0, 0],
+        [1, 0, 0, 1, 1, 0],
+        [1, 0, 0, 0, 0, 1],
+        [0, 1, 0, 0, 1, 0],
+        [0, 1, 0, 1, 0, 0],
+        [0, 0, 1, 0, 0, 0]
+]
 
+//인접행렬 버전
+func BFSgraph(graph: [[Int]], start: Int){
+    var visitedQueue = [Bool](repeating: false, count: graph[0].count)
+    var needtoVisit: [Int] = [start]
+    
+    while !needtoVisit.isEmpty {
+        let dequeued = needtoVisit.removeFirst()
+        visitedQueue[dequeued] = true
+        print(dequeued, terminator: " ")
+        for i in 0..<matrix[dequeued].count{
+            if(matrix[dequeued][i] == 1 && !visitedQueue[i]){
+                needtoVisit.append(i)
+            }
+        }
+    }
+}
+
+//인접리스트 버전
 func BFSgraph(graph: [String: [String]], start: String) -> [String] {
     var visitedQueue: [String] = []
     var needToVisit: [String] = [start]
@@ -88,6 +114,7 @@ func BFSgraph(graph: [String: [String]], start: String) -> [String] {
 
 
 print("BFSgraph : ", BFSgraph(graph: graph, start: "E"))
+BFSgraph(graph: matrix, start: 0)
 
 //dfs
 // you can make dfs with Stack or recursive way. So why stack? This is because, when you go deep through graph, you may find the vertext that end, like the leaf node in Tree. So, you go back to the before node if it has other edges. This is the reason why we should use Stack. We should pop the element, and use just before. And You should use the list that store the visited one. This is big different with the DFS on tree. Tree goes the same way, from root to leaf. But the graph does not. So you should store visited one not to visit them. SO the source code would be like this
@@ -106,17 +133,37 @@ func DFSgraph(graph: [String: [String]], start: String) -> [String] {
     return visited
 }
 
+func DFSgraph(graph: [[Int]], start: Int){
+    var visited = [Bool](repeating: false, count: graph[0].count)
+    var needToVisit: [Int] = [start]
+    
+    while !needToVisit.isEmpty {
+        let popelement = needToVisit.removeLast()
+        if visited[popelement] {continue}
+        visited[popelement] = true
+        print(popelement, terminator: " ")
+        for i in 0..<graph[popelement].count{
+            if(graph[popelement][i] == 1){
+                needToVisit.append(i)
+            }
+        }
+    }
+}
+
 print("DFSgraph : ", DFSgraph(graph: graph, start: "E"))
-print("DFSgraph : ", DFSgraph(graph: graph, start: "A"))
+DFSgraph(graph: matrix, start: 0)
+
 
 //recursive way, if you use stack, you can also use recursive.
 func DFSrecursive(start: String){
     var visited = [String]()
     dfs(startvartex: start, visited: &visited)
 }
+
+
 func dfs(startvartex: String, visited: inout [String]){
     visited.append(startvartex)
-    print(startvartex)
+    print(startvartex, terminator: " ")
     guard let adjc = graph[startvartex] else{
         return
     }
@@ -127,4 +174,19 @@ func dfs(startvartex: String, visited: inout [String]){
     }
 }
 
+func dfs(startvartex: Int, visited: inout [Bool]){
+    visited[startvartex] = true
+    print(startvartex, terminator: " ")
+    for i in 0..<matrix[startvartex].count{
+        if(!visited[i] && matrix[startvartex][i] == 1){
+            dfs(startvartex: i, visited: &visited)
+        }
+    }
+}
+
+
+var visited = [Bool](repeating: false, count: matrix[0].count)
+print("\n")
+dfs(startvartex: 0, visited: &visited)
+print("\n")
 DFSrecursive(start: "A")
