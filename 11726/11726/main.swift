@@ -17,11 +17,11 @@ func teliing()->Int{
         arr[2] = 2
         if input >= 3 {
             for i in 3...input{
-                arr[i] = arr[i-1] + arr[i-2]
+                arr[i] = (arr[i-1] + arr[i-2]) % 10007
             }
         }
     }
-    return arr[input] % 10007
+    return arr[input]
 }
 
 print(teliing())
