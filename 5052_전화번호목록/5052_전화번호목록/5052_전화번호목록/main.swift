@@ -30,27 +30,3 @@ for i in 0..<turn {
 for answer in answer {
   print(answer)
 }
-
-
-//func solution(_ turn: Int) -> String {
-//  let count =  Int(readLine()!)!
-//  var arr = [String]()
-//  for _ in 0..<count {
-//    guard let lastEle = arr.last else {
-//      arr.append(readLine()!)
-//      continue
-//    }
-//    let new = readLine()!
-//    arr.append(new)
-//    arr = arr.sorted()
-//    let index = arr.firstIndex(of: new)!
-//    if index == 0{
-//      if new.hasPrefix(arr[index+1]) {return "NO"}
-//    } else if index == arr.count - 1 {
-//      if new.hasPrefix(arr[index-1]) {return "NO"}
-//    } else {
-//      if new.hasPrefix(arr[index-1]) || new.hasPrefix(arr[index+1]) {return "NO"}
-//    }
-//  }
-//  return "YES"
-//}
