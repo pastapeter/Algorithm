@@ -113,10 +113,7 @@ func solution() {
         finalMatrix[j.y][j.x] = 0
       }
     }
-//    for coor in combination {
-//      finalMatrix[coor.y][coor.x] = 0
-//    }
-//    print(finalMatrix)
+
     // 속도 구하기
     var maxInt = 0
     for y in 0..<N {
@@ -126,7 +123,7 @@ func solution() {
     }
     resultlist.append(maxInt)
   }
-//  print(resultlist)
+  
   print(resultlist.min()! == 100000 ? -1 : resultlist.min()!)
   
 }
