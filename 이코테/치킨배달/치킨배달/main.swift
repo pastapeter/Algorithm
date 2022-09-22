@@ -24,6 +24,38 @@ func combi<T>(_ nums: [T], _ targetNum: Int) -> [[T]] {
     return result
 }
 
+func permutation<T>(_ arr: [T], _ n: Int) -> [[T]] {
+    var result = [[T]]()
+    if arr.count < n {return result}
+    
+    var stack: [([T], [Bool])] = arr.enumerated().map {
+        var visited = [Bool](repeating: false, count: arr.count)
+        visited[$0.offset] = true
+        return ([$0.element], visited)
+    }
+    
+    while stack.count > 0 {
+        let now = stack.removeLast()
+        let elements = now.0
+        var visited = now.1
+        
+        if elements.count == n {
+            result.append(elements)
+            continue
+        }
+        
+        for i in 0..<arr.count - 1 {
+            if visited[i] {continue}
+            visited[i] = true
+            stack.append((elements + [arr[i]], visited))
+            visited[i] = false
+        }
+    }
+    
+    return result
+    
+}
+
 let nm = readLine()!.split(separator: " ").map { Int($0)! }
 let n = nm[0]
 let m = nm[1]
