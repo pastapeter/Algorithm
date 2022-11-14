@@ -31,6 +31,7 @@ for i in (0..<n) {
     }
     dp[i+schedule[i].T] = max(k + schedule[i].P, dp[i + schedule[i].T])
 }
+
 print(dp.max()!)
 
 
