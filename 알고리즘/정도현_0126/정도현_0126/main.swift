@@ -29,10 +29,8 @@ func solution(_ relation:[[String]]) -> Int {
   // 1개짜리 찾기
   var rowCount = relation.count
   var colCount = relation[0].count
-  
-  var keyLength = 1
   var indexs: [Int] = (0..<relation[0].count).map { $0 }
-  var dp: [[Int]] = []
+  var dp: Set<Set<Int>> = []
   
   for index in indexs {
     var tempSet = Set<String>()
@@ -40,11 +38,11 @@ func solution(_ relation:[[String]]) -> Int {
       tempSet.insert(row[index])
     }
     if tempSet.count == rowCount {
-      dp.append([index])
+      dp.insert(Set([index]))
     }
   }
   
-  keyLength += 1
+  var keyLength = 2
   
   while keyLength <= colCount {
     
@@ -54,7 +52,7 @@ func solution(_ relation:[[String]]) -> Int {
     for combi in combis {
       var flag = false
       for ele in dp {
-        if Set(combi).intersection(Set(ele)).count == ele.count {
+        if Set(combi).intersection(ele).count == ele.count {
           flag = true
           break
         }
@@ -68,7 +66,7 @@ func solution(_ relation:[[String]]) -> Int {
         tempSet.insert(newCombi.map { row[$0] }.joined())
       }
       if tempSet.count == rowCount {
-        dp.append(newCombi)
+        dp.insert(Set(newCombi))
       }
     }
     
