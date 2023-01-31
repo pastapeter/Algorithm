@@ -35,28 +35,28 @@ for y in 0..<N {
   planeMap.append(temp)
 }
 
-var visitedMap = [[Bool]](repeating: [Bool](repeating: false, count: M), count: N)
-
-
 var start: Coor = Coor(x: 0, y: N-1)
-
-
 func solution() {
-  visitedMap[start.y][start.x] = true
-  print(dfs(start: start, score: planeMap[start.y][start.x], mode: .up, visited: visitedMap))
+  if N == 1 && M == 1 {
+    print(planeMap[N-1][M-1] * 2)
+  } else {
+    print(dfs(start: start, score: planeMap[start.y][start.x], mode: .up))
+  }
 }
 
-func dfs(start: Coor, score: Int, mode: Mode, visited: [[Bool]]) -> Int {
+func dfs(start: Coor, score: Int, mode: Mode) -> Int {
   
-  var totalx = [0, 0, 1]
-  var totaly = [-1, 1, 0]
-  var score = score
-  var visited = visited
-  var new1 = 0
-  var new2 = 0
-  var new3 = 0
+  let totalx = [0, 0, 1]
+  let totaly = [-1, 1, 0]
+  let score = score
+  var new1 = Int.min
+  var new2 = Int.min
+  var new3 = Int.min
+  var new4 = Int.min
+  var new5 = Int.min
+  var new6 = Int.min
   
-  if start == Coor(x: M-1, y: N-1) {
+  if start == destination && mode == .down{
     return score
   }
   
@@ -66,28 +66,26 @@ func dfs(start: Coor, score: Int, mode: Mode, visited: [[Bool]]) -> Int {
       continue
     }
     var ns = score + planeMap[nc.y][nc.x]
+    
     if mode == .up {
-      if (i == 0 || i == 2) && visited[nc.y][nc.x] == false { // mode가 같은데, 위로감
-        visited[nc.y][nc.x] = true
-        new1 = max(new1,dfs(start: nc, score: ns, mode: .up, visited: visited))
-        visited[nc.y][nc.x] = false
-      } else if i == 1 && visited[nc.y][nc.x] == false { //mode가 다르다
-        visited[nc.y][nc.x] = true
-        new2 = max(new2, dfs(start: nc, score: ns + planeMap[start.y][start.x], mode: .down, visited: visited))
-        visited[nc.y][nc.x] = false
+      if i == 0 { // mode가 같은데, 위로감
+        new1 = max(new1,dfs(start: nc, score: ns, mode: .up))
+      } else if i == 1 { //mode가 다르다
+        new2 = max(new2, dfs(start: nc, score: ns + planeMap[start.y][start.x], mode: .down))
+      } else {
+        new3 = max(new3, dfs(start: nc, score: ns, mode: .up))
+        new4 = max(new4, dfs(start: nc, score: ns + planeMap[start.y][start.x], mode: .down))
       }
     } else {
-      if (i == 1 || i == 2) && visited[nc.y][nc.x] == false { //mode가 같다
-        visited[nc.y][nc.x] = true
-        new3 = max(new3, dfs(start: nc, score: ns, mode: .down, visited: visited))
-        visited[nc.y][nc.x] = false
-      } else if i == 0 && visited[nc.y][nc.x] == false {
-        continue// mode가 다르다.
+      if i == 1 { //mode가 같
+        new5 = max(new5, dfs(start: nc, score: ns, mode: .down))
+      } else if i == 2 {
+        new6 = max(new6, dfs(start: nc, score: ns, mode: .down))
       }
     }
   }
   
-  return max(new1, new2, new3)
+  return max(new1, new2, new3, new4, new5, new6)
 }
 
 solution()
