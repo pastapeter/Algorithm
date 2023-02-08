@@ -15,12 +15,14 @@ func findNewBinary(num: String) -> String {
     len = len / 2
     n += 1
   }
+  print(n, num, num.count)
   var supposedLen = pow(2.0, Float(n)) - 1
   var need = supposedLen - Float(num.count)
   var new = ""
   for _ in 0..<Int(need) {
     new += "0"
   }
+  print(new+num)
   return new + num
 }
 
@@ -67,4 +69,4 @@ func solution(_ numbers:[Int64]) -> [Int] {
   return result
 }
 
-print(solution([17]))
+print(solution([8]))
