@@ -109,6 +109,39 @@ func dijkstra(start: Int) -> [Int] {
   return dist
 }
 
+//다익스트라 짜기 연습
+// start는 node로 정하고, 방출은 해당 node에서 얼마나 거리가있는지? [거리]
+func dijkstra2(start: Node) -> [Int] {
+  //1. 일단 시작지점은 0으로 바꿔줌
+  dist[start.node] = 0
+  //2. pq로 선언해준다.
+  var pq = PriorityQueue(ascending: true, startingValues: [start])
+  
+  //3. pq가 끝날때까지 가까운 노드부터 방문을 하면서 dist값을 변경할 수 있음
+  while !pq.isEmpty {
+    
+    // 현위치
+    let now = pq.pop()!
+    let d = now.priority
+    let n = now.node
+    
+    // dist[node] < dist 보다 작으면 갈필요없음
+    if dist[n] < d {
+      continue
+    }
+    
+    for next in graph[n] {
+      let distance = next.priority + d // 현 위치에서 다음 위치까지 거리 + 현 위치까지 오는데 가장 짧은 거리
+      if distance < dist[next.node] { //원래 nextnode까지 가는데 걸리는 것보다, 현 위치를 거쳐서 가는게 더 빠르다면
+        dist[next.node] = distance // 현위치 거쳐서 가는걸로 변경해주고
+        pq.push(Node(node: next.node, priority: distance)) // 우선순위큐에 저장
+      }
+      
+    }
+  }
+  return dist
+}
+
 let n = Int(readLine()!)!
 let abc = readLine()!.split(separator: " ").map { Int(String($0))!}
 let loads = Int(readLine()!)!
