@@ -29,12 +29,12 @@ func dfs(now: Int, root: Bool) -> Int {
   // L(child) >= D[parent] 확인해야함
   var child = 0
   for next in graph[now] {
-    if discovered[next] == 0 {
-      child += 1
-      let low = dfs(now: next, root: false)
+    if discovered[next] == 0 { //그래프중에 방문안한 것이 있다면?
+      child += 1 // 자식몇개인지 찾기
+      let low = dfs(now: next, root: false) //
       num = min(low, num)
       if (!root && low >= discovered[now]) { res[now] = true }
-    } else {
+    } else { // 이미 방문하였다면? 현재의 방문순서, 자식의 방문순서 확인
       num = min(num, discovered[next])
     }
   }
