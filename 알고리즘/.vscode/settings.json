@@ -2,6 +2,7 @@
     "files.associations": {
         "string": "cpp",
         "format": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "queue": "cpp"
     }
 }
