@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int dfs(string begin, string target, vector<string> words, int turn) {
+void dfs(string begin, string target, vector<string> words, int turn) {
     
     if (words.size() == 0 && begin == target)  return turn;
     else if (words.size() == 0) return 0;
@@ -18,7 +18,7 @@ int dfs(string begin, string target, vector<string> words, int turn) {
             }
         }
         if (cnt == begin.size() - 1) {
-            turn = dfs(words[i], target, words, turn+1);
+            dfs(words[i], target, words, turn+1);
             cout << "중간단계" << turn << endl;
         }
     }
