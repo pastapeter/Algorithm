@@ -3,6 +3,7 @@
         "string": "cpp",
         "format": "cpp",
         "iosfwd": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "ios": "cpp"
     }
 }
