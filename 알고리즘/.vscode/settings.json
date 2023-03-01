@@ -4,6 +4,7 @@
         "format": "cpp",
         "iosfwd": "cpp",
         "queue": "cpp",
-        "ios": "cpp"
+        "ios": "cpp",
+        "ostream": "cpp"
     }
 }
