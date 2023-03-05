@@ -33,6 +33,9 @@ import Foundation
  그리고 끝까지 갔을 때, 또 시작을 안하고 return 해야한다.
  if (complete!=ans) { return } 없으면 반복문 중간에 return으로 나오더라도 또 돌게되고, 그때 또 ans += 1이 돌 수 있다.
  더하면 안되는 이유는 해당 가스관이 일단 +1이되었다면, 어떤 가스관이더라도 그 칸을 걸치지 못하기 때문
+ 원래 Backtracking일때 시간복잡도: O(R*3^c)
+ 백트래킹하지말고 경로를 계속 check하는 것 O(R*C)
+  
  */
 
 let RC = readLine()!.split(separator: " ").map { Int(String($0))!}
