@@ -1,5 +1,11 @@
 import Foundation
-
+/*
+ 시간 복잡도
+ O(1000 * K * 3)
+ turn은 1000까지인데, 1turn시에 k개 말을 돌아야한다.
+ 해당 위치에서 말의 stack에서 해당 위치를 찾아야함.
+ 근데 모든 말에 4개전까지 있으니, 최대 3개까지가 최대일 것임
+ */
 struct Horse: Equatable, CustomStringConvertible {
   var description: String {
     var dirstr = ["->", "<-", "^", "v"]
@@ -133,6 +139,8 @@ func move(to coorTo: (x: Int, y: Int), from coorFrom: (x: Int, y: Int), id: Int)
     OutOfRangeMove(from: coorFrom, id: id)
   }
   
+  // 1차원 베열을 사용해서 다음 Move를 check하니깐, 움직인 것에 대해서 3차원 배열을
+  // 1차원 배열로 변경하고, 그리고 id를 기반으로 sort를 돌린다.
   horseQueue = horseBoard.flatMap {$0}.flatMap {$0}.sorted(by: { $0.id < $1.id})
   return isOverWith4()
   
