@@ -68,6 +68,7 @@ func secondBacktracking(index: Int, cnt: Int) {
     var flag = false
     for i in 0..<n {
       if eggs[i].s <= 0 { continue }
+      if i == index { continue }
       flag = true
       newCrash(left: index, right: i)
       if eggs[i].s <= 0 && eggs[index].s > 0 {
@@ -78,6 +79,9 @@ func secondBacktracking(index: Int, cnt: Int) {
         restore(left: index, right: i)
       } else if eggs[i].s <= 0 && eggs[index].s <= 0 {
         secondBacktracking(index: index+1, cnt: cnt+2)
+        restore(left: index, right: i)
+      } else {
+        secondBacktracking(index: index+1, cnt: cnt)
         restore(left: index, right: i)
       }
     }
@@ -115,7 +119,7 @@ func backtracking(index: Int, eggs: [Egg]) {
   }
 }
 
-backtracking(index: 0, eggs: eggs)
-//secondBacktracking(index: 0, cnt: 0)
+//backtracking(index: 0, eggs: eggs)
+secondBacktracking(index: 0, cnt: 0)
 print(ans)
 
