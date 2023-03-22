@@ -20,6 +20,10 @@
  그리고 선수과목들이 있는 과목들은 언제들을 수 있냐면, 이것도 indegree가 0이 되어야한다. 그리고 이때, 해당 과목을 언제 들을 수 있는지는, 가장 마지막으로 사라지는 선수과목을 들을 수 있는 학기+1 이다.
  */
 
+/* 시간복잡도
+  O(V+E)
+ */
+
 import Foundation
 
 let nm = readLine()!.split(separator: " ").map { Int(String($0))!}
