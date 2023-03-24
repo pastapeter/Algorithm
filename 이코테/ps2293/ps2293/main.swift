@@ -13,6 +13,17 @@ import Foundation
  사용한 동전의 구성이 같은데, 순서만 다른 것은 같은 경우이다.
 */
 
+/*
+ <풀이>
+ DP문제이다.
+ dp[i] += dp[i-coin] 의 점화식은 금방생각났다.
+ 근데 어떻게 DP 배열을 채울지 생각을 좀 오래했던 문제이다.
+ dp[0]에 1을 집어넣고, i-coin > 0 이면, dp[i] 를 채울 있다.
+ 
+ 시간복잡도
+ O(N)
+ */
+
 let nk = readLine()!.split(separator: " ").map { Int(String($0))! }
 let n = nk[0]
 let k = nk[1]
