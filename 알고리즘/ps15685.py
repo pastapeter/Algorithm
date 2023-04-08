@@ -3,6 +3,15 @@ from collections import deque
 
 input = sys.stdin.readline
 
+# 문제 15685
+# 단순히 규칙을 찾으면 되는 문제이다.
+# 세대가 올라갈때, 0세대 중 시작지점을 제외한 나머지를 거꾸로한다면,
+# 세대에서 그릴 새로운 드래곤 커브를 찾을 수 있다.
+# 그러면 이제 돌리기만 하면되는데, 
+# 돌리는 것은 시계방향으로 돌리면 되므로, dx, dy에 규칙에 맞게 적어주면 된다.
+# 그리고 set을 활용해서 x,y 좌표 중복값을 뺴주고
+# 사각형을 찾으면 된다.
+
 n = int(input())
 # x, y, d, g -> 시작점, 시작방향, 세대
 dx = [1,0,-1,0]
@@ -39,7 +48,6 @@ for info in infos:
             ny = y + dy[i]
             queue.append((nx, ny, i))
     
-    print(queue)
     for ele in queue:
         res.add((ele[0], ele[1]))
 
