@@ -43,7 +43,6 @@ def calculate(row, col, d1, d2):
     arr = [one, two, three, four, five]
     arr.sort()
 
-    print(arr)
     ans = min(ans, arr[4] - arr[0])
 
 
@@ -60,5 +59,3 @@ for r in range(n-2):
                 check(r,c,d1,d2)
 
 print(ans)
-
-
