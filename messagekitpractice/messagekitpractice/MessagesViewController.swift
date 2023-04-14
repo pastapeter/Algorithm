@@ -334,6 +334,8 @@ UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UIGestureRecogni
                 cell.configure(with: message, at: indexPath, and: messagesCollectionView)
                 return cell
             }
+        case .custom:
+          return messagesDataSource.customCell(for: message, at: indexPath, in: messagesCollectionView)
         }
     }
 

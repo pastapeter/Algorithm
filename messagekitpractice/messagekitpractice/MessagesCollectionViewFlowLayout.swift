@@ -136,6 +136,8 @@ import AVFoundation
             return messagesLayoutDelegate.textCellSizeCalculator(for: message, at: indexPath, in: messagesCollectionView) ?? textMessageSizeCalculator
         case .attributedText:
             return messagesLayoutDelegate.attributedTextCellSizeCalculator(for: message, at: indexPath, in: messagesCollectionView) ??  attributedTextMessageSizeCalculator
+        case .custom:
+          return messagesLayoutDelegate.customCellSizeCalculator(for: message, at: indexPath, in: messagesCollectionView)
         }
     }
 
