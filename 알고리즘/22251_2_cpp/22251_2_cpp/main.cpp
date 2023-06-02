@@ -26,17 +26,6 @@ vector<vector<int>> numbers = {
 int weight[10][10] = { 0 };
 int N, K, P, X;
 string str;
-// LED변경은 1 ~ P
-// 변경된 숫자는 1 ~ N 사이이다.
-// 초기값은 X임
-// K는 보이는 숫자
-
-/*
-틀린 포인트는
- while(str.length() < K) str.insert(str.begin(), '0'); 의 유무가 중요함
- 보이는 숫자 갯수가 2일때, 5가 x로들어온다면
- 05로 바꾸어줘야한다.
- */
 int answer = 0;
 void dfs(int depth, int ledCnt, string temp) {
   if (depth >= str.length()) {
