@@ -45,7 +45,7 @@ def find_location(sticker):
 def apply_sticker(start, sticker):
     for y in range(len(sticker)):
         for x in range(len(sticker[y])):
-            if not board[y + start[1]][x + start[0]] == 1:
+            if not board[y + start[1]][x + start[0]] == 1:  # 색칠조건 확실히하기
                 board[y + start[1]][x + start[0]] = sticker[y][x]
 
 
@@ -64,7 +64,7 @@ for sticker in stickers:
             start_locations = find_location(sticker)
             if len(start_locations) > 0:
                 apply_sticker(start_locations[0], sticker)
-                break
+                break  # 처음 틀렸던 이유 while 문에서 조건탈출할떄 break 잊지말기
             rotate_index += 1
 
 answer = 0
