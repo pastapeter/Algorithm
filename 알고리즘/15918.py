@@ -49,6 +49,7 @@ def dfs(depth):
     if depth == 2 * n + 1:
         answer += 1
         return
+    # 53번라인이 되는 이유는 아래에서 이미 다음것을 챙겨줬기 때문이다. 그래서 포문을 안돌고 그냥 다음 depth로 넘어가는 것임
     if arr[depth] != 0:
         dfs(depth + 1)
     else:
