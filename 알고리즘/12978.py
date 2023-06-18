@@ -1,7 +1,7 @@
 import sys
 
 input = sys.stdin.readline
-sys.setrecursionlimit(10000)
+sys.setrecursionlimit(10**6)
 
 # 도시는 양방향 도로
 # N-1개의 도로를 이용해 모든 도시들 사이에는 단 한개의 경로만
